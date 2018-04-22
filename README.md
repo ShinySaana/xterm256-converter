@@ -1,4 +1,8 @@
- # xterm256-converter
+
+# xterm256-converter 
+[![Crates.io](https://img.shields.io/crates/v/xterm256-converter.svg)](https://crates.io/crates/xterm256_converter)
+
+
 > A Rust utility for converting images to terminal color sequences.
 
 ## Usage
