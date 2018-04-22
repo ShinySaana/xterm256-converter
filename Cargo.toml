@@ -1,0 +1,17 @@
+[package]
+name = "xterm256_converter"
+version = "0.1.0"
+authors = ["ShinySaana <shinysaana@gmail.com>"]
+description = "A Rust utility for converting images to terminal color sequences"
+repository = "https://github.com/ShinySaana/xterm256-converter"
+readme = "README.md"
+keywords = ["xterm", "256", "colors", "image", "converter"]
+license = "MIT"
+
+[[bin]]
+name = "xt256-conv"
+path = "src/main.rs"
+
+[dependencies]
+image = "0.18.0"
+clap = "2"
