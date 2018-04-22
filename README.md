@@ -5,6 +5,12 @@
 
 > A Rust utility for converting images to terminal color sequences.
 
+## Install
+
+```shell
+cargo install xterm256_converter
+```
+
 ## Usage
 
 ```shell
