@@ -56,6 +56,38 @@ fn encode_background(color_code: Option<u8>) -> Vec<u8> {
     }
 }
 
+pub fn convert_from_image_buffer(img: &ImageBuffer<Rgba<u8>, Vec<u8>>) -> Vec<u8> {
+    let mut result: Vec<u8> = Vec::new();
+
+    for y in 0..img.dimensions().1 {
+        let mut last_cc: Option<u8> = None;
+        for x in 0..img.dimensions().0 {
+            let color_code = if img[(x, y)][3] < 128 {
+                None
+            } else {
+                Some(find_color_code(img[(x, y)]))
+            };
+
+            if last_cc != color_code {
+                result.extend(encode_background(color_code));
+                last_cc = color_code;
+            }
+            result.extend_from_slice(b"  ");
+        }
+        result.extend_from_slice(b"\x1b[0m\n");
+    }
+    result
+}
+
+pub fn convert_from_file(filename: &str) -> Result<Vec<u8>, ImageError> {
+    let img = image::open(filename);
+
+    match img {
+        Ok(value) => Ok(convert_from_image_buffer(&value.to_rgba())),
+        Err(err) => Err(err),
+    }
+}
+
 fn unicode_converter_row<'a>(
     img: &ImageBuffer<Rgba<u8>, Vec<u8>>,
     y: u32,
@@ -123,6 +155,7 @@ fn unicode_converter_row<'a>(
     result.extend_from_slice(b"\x1b[0m\n");
     result
 }
+
 pub fn convert_to_unicode_from_image_buffer(img: &ImageBuffer<Rgba<u8>, Vec<u8>>) -> Vec<u8> {
     let mut result: Vec<u8> = Vec::new();
 

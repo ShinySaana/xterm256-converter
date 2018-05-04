@@ -1,6 +1,6 @@
 [package]
 name = "xterm256_converter"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["ShinySaana <shinysaana@gmail.com>"]
 description = "A Rust utility for converting images to terminal color sequences"
 repository = "https://github.com/ShinySaana/xterm256-converter"
