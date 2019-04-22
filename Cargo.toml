@@ -13,5 +13,5 @@ name = "xt256-conv"
 path = "src/main.rs"
 
 [dependencies]
-image = "0.18.0"
+image = "0.21"
 clap = "2"
